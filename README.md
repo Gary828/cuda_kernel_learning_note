@@ -1,2 +1,3 @@
 # cuda_kernel_learning_note
 learning note
+菜鸡记录一些算子优化过程

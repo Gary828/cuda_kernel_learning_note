@@ -1,0 +1,30 @@
+
+NOTICE: Existing SQLite export found: topk_profile_cmp.sqlite
+        It is assumed file was previously exported from: topk_profile_cmp.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [topk_profile_cmp.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)               Name             
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ------------------------------
+     72.3       1189824559     218287    5450.7    4301.0      1915  30408915      84131.0  cudaLaunchKernel              
+     17.8        292832205       2021  144894.7   59505.0      5373   1109408     185067.8  cudaMemcpy                    
+      4.9         80889009       4047   19987.4    5535.0       946    504103      23763.3  cudaFree                      
+      2.2         36728352       8088    4541.1    3629.0      1544     89418       4666.8  cudaMemcpyAsync               
+      0.9         15292363       4000    3823.1    3219.5      1251    267386       6454.0  cudaEventRecord               
+      0.8         12391182       4048    3061.1    1850.5      1322    397227      10721.2  cudaMalloc                    
+      0.5          8098750       2000    4049.4     304.0       278     84875      13397.7  cudaEventSynchronize          
+      0.4          6291800         11  571981.8  601292.0     84268    940941     284103.3  cuLibraryUnload               
+      0.1          1452956       4000     363.2     280.0       259      4742        263.1  cudaEventCreate               
+      0.1           999497       4000     249.9     225.0       204     29968        514.4  cudaEventDestroy              
+      0.1           920023          1  920023.0  920023.0    920023    920023          0.0  cudaHostAlloc                 
+      0.0           238240          2  119120.0  119120.0     15286    222954     146843.5  cudaStreamSynchronize         
+      0.0            23917          6    3986.2    1279.0       258     17519       6732.1  cudaStreamIsCapturing_v10000  
+      0.0            17966          1   17966.0   17966.0     17966     17966          0.0  cudaStreamCreate              
+      0.0            10472          4    2618.0    2556.0      2248      3112        360.0  cudaDeviceSynchronize         
+      0.0             7614          1    7614.0    7614.0      7614      7614          0.0  cuModuleGetLoadingMode        
+      0.0             7323          2    3661.5    3661.5      1933      5390       2444.5  cudaGetDeviceProperties_v12000
+      0.0             6052          1    6052.0    6052.0      6052      6052          0.0  cudaStreamDestroy             
+

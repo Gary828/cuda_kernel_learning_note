@@ -1,0 +1,25 @@
+
+NOTICE: Existing SQLite export found: topk_profile_debug1.sqlite
+        It is assumed file was previously exported from: topk_profile_debug1.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [topk_profile_debug1.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)               Name             
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ------------------------------
+     90.4         90776358        167  543571.0    4332.0      2706  23335332    2535253.5  cudaLaunchKernel              
+      7.2          7267415         14  519101.1  557806.5     82188    999683     287271.9  cuLibraryUnload               
+      0.7           743296          3  247765.3    9607.0      6783    726906     414950.4  cudaHostAlloc                 
+      0.4           436267          6   72711.2    8801.5      1285    210372     104169.7  cudaMalloc                    
+      0.4           392692         26   15103.5   11419.0      4900     64801      12900.8  cudaMemcpyAsync               
+      0.4           386615         20   19330.8   15124.0       686     69782      16762.5  cudaStreamSynchronize         
+      0.3           301159          5   60231.8    9844.0      1903    254584     109324.1  cudaFree                      
+      0.0            49681          1   49681.0   49681.0     49681     49681          0.0  cudaMemcpy                    
+      0.0            16420          1   16420.0   16420.0     16420     16420          0.0  cudaStreamCreate              
+      0.0             8304          6    1384.0     948.0       245      3482       1315.4  cudaStreamIsCapturing_v10000  
+      0.0             6157          1    6157.0    6157.0      6157      6157          0.0  cudaStreamDestroy             
+      0.0             5458          2    2729.0    2729.0      1920      3538       1144.1  cudaGetDeviceProperties_v12000
+      0.0              639          1     639.0     639.0       639       639          0.0  cuModuleGetLoadingMode        
+

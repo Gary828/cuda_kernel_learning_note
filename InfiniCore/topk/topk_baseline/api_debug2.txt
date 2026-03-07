@@ -1,0 +1,25 @@
+
+NOTICE: Existing SQLite export found: topk_profile_debug2.sqlite
+        It is assumed file was previously exported from: topk_profile_debug2.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [topk_profile_debug2.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)               Name             
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ------------------------------
+     89.4         86670727        167  518986.4    4730.0      2133  22727004    2426814.1  cudaLaunchKernel              
+      7.9          7697336         14  549809.7  560369.5     97375   1055548     280726.4  cuLibraryUnload               
+      0.8           786624          3  262208.0   27009.0      7498    752117     424385.8  cudaHostAlloc                 
+      0.5           516231          6   86038.5    5782.5      1466    261153     127063.4  cudaMalloc                    
+      0.5           507664         20   25383.2   19013.5       807     89714      21801.5  cudaStreamSynchronize         
+      0.4           387511         26   14904.3   10272.5      4819     41201      11266.2  cudaMemcpyAsync               
+      0.3           294087          5   58817.4    9790.0      1951    253061     109044.1  cudaFree                      
+      0.0            18432          1   18432.0   18432.0     18432     18432          0.0  cudaStreamCreate              
+      0.0            12033          1   12033.0   12033.0     12033     12033          0.0  cudaMemcpy                    
+      0.0             7935          6    1322.5     763.5       185      3166       1311.8  cudaStreamIsCapturing_v10000  
+      0.0             5800          2    2900.0    2900.0      2149      3651       1062.1  cudaGetDeviceProperties_v12000
+      0.0             5716          1    5716.0    5716.0      5716      5716          0.0  cudaStreamDestroy             
+      0.0              614          1     614.0     614.0       614       614          0.0  cuModuleGetLoadingMode        
+

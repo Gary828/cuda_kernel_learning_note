@@ -1,0 +1,16 @@
+Generating SQLite file topk_profile_torch_debug.sqlite from topk_profile_torch_debug.nsys-rep
+Processing [topk_profile_torch_debug.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)   Med (ns)   Min (ns)  Max (ns)  StdDev (ns)               Name             
+ --------  ---------------  ---------  ---------  ---------  --------  --------  -----------  ------------------------------
+     86.7         19800769          3  6600256.3  1094836.0     60047  18645886   10444644.2  cudaLaunchKernel              
+     12.2          2779246          3   926415.3  1204116.0    347981   1227149     501071.2  cuLibraryUnload               
+      0.9           215116          1   215116.0   215116.0    215116    215116          0.0  cudaMalloc                    
+      0.1            16789          1    16789.0    16789.0     16789     16789          0.0  cudaStreamCreate              
+      0.0             7608          6     1268.0      716.5       192      3061       1248.2  cudaStreamIsCapturing_v10000  
+      0.0             6857          1     6857.0     6857.0      6857      6857          0.0  cudaStreamDestroy             
+      0.0             5977          2     2988.5     2988.5      1705      4272       1815.1  cudaGetDeviceProperties_v12000
+      0.0              557          1      557.0      557.0       557       557          0.0  cuModuleGetLoadingMode        
+

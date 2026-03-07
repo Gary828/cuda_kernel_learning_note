@@ -1,0 +1,21 @@
+Generating SQLite file topk_profile_torch_bench.sqlite from topk_profile_torch_bench.nsys-rep
+Processing [topk_profile_torch_bench.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_api_sum.py]... 
+
+ ** CUDA API Summary (cuda_api_sum):
+
+ Time (%)  Total Time (ns)  Num Calls  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)               Name             
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ------------------------------
+     69.7         49705004       4043   12294.1    4589.0      2127  18485639     298194.6  cudaLaunchKernel              
+     15.4         10958261       2000    5479.1    2885.0      1278   2040403      64426.7  cudaEventRecord               
+      9.2          6579887       1000    6579.9     280.0       260    270709      18538.6  cudaEventSynchronize          
+      3.6          2549178          3  849726.0  656712.0    450152   1442314     523485.6  cuLibraryUnload               
+      1.0           737698       2000     368.8     278.0       250      4521        261.7  cudaEventCreate               
+      0.7           467363       2000     233.7     227.0       210      9072        202.7  cudaEventDestroy              
+      0.4           272219          1  272219.0  272219.0    272219    272219          0.0  cudaMalloc                    
+      0.0            17829          1   17829.0   17829.0     17829     17829          0.0  cudaStreamCreate              
+      0.0            10367          6    1727.8    1259.0       213      3941       1634.2  cudaStreamIsCapturing_v10000  
+      0.0             9030          2    4515.0    4515.0      4252      4778        371.9  cudaDeviceSynchronize         
+      0.0             8042          1    8042.0    8042.0      8042      8042          0.0  cudaStreamDestroy             
+      0.0             6898          2    3449.0    3449.0      1907      4991       2180.7  cudaGetDeviceProperties_v12000
+      0.0              435          1     435.0     435.0       435       435          0.0  cuModuleGetLoadingMode        
+

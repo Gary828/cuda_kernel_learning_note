@@ -1,0 +1,15 @@
+
+NOTICE: Existing SQLite export found: topk_profile_torch_bench.sqlite
+        It is assumed file was previously exported from: topk_profile_torch_bench.nsys-rep
+        Consider using --force-export=true if needed.
+
+Processing [topk_profile_torch_bench.sqlite] with [/opt/nvidia/nsight-systems/2025.5.1/host-linux-x64/reports/cuda_gpu_kern_sum.py]... 
+
+ ** CUDA GPU Kernel Summary (cuda_gpu_kern_sum):
+
+ Time (%)  Total Time (ns)  Instances  Avg (ns)  Med (ns)  Min (ns)  Max (ns)  StdDev (ns)                                                  Name                                                
+ --------  ---------------  ---------  --------  --------  --------  --------  -----------  ----------------------------------------------------------------------------------------------------
+     53.4          9087724       2021    4496.6    4480.0      4479      4672         24.6  void at::native::sbtopk::gatherTopK<float, unsigned int, (int)2, (bool)0>(at::cuda::detail::TensorI…
+     46.6          7916060       2021    3916.9    3904.0      3903      4768         28.2  void at::native::bitonicSortKVInPlace<(int)2, (int)-1, (int)16, (int)16, float, long, at::native::G…
+      0.0             1440          1    1440.0    1440.0      1440      1440          0.0  void at::native::<unnamed>::distribution_elementwise_grid_stride_kernel<float, (int)4, void at::nat…
+
