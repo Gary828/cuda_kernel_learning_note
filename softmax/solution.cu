@@ -1,0 +1,86 @@
+#include <cuda_runtime.h>
+  #include <cfloat>
+
+  constexpr int WARP_SIZE = 32;
+  constexpr int BLOCK_SIZE = 256;
+
+  __device__ __forceinline__ float warp_reduce_max(float v) {
+      #pragma unroll
+      for (int offset = WARP_SIZE / 2; offset > 0; offset >>= 1) {
+          v = fmaxf(v, __shfl_down_sync(0xffffffff, v, offset));
+      }
+      return v;
+  }
+
+  __device__ __forceinline__ float warp_reduce_sum(float v) {
+      #pragma unroll
+      for (int offset = WARP_SIZE / 2; offset > 0; offset >>= 1) {
+          v += __shfl_down_sync(0xffffffff, v, offset);
+      }
+      return v;
+  }
+
+  __device__ __forceinline__ float block_reduce_max(float v) {
+      __shared__ float warp_max[BLOCK_SIZE / WARP_SIZE];
+      int lane = threadIdx.x & (WARP_SIZE - 1);
+      int warp_id = threadIdx.x / WARP_SIZE;
+
+      v = warp_reduce_max(v);
+      if (lane == 0) warp_max[warp_id] = v;
+      __syncthreads();
+
+      float out = -FLT_MAX;
+      if (warp_id == 0) {
+          out = (lane < (BLOCK_SIZE / WARP_SIZE)) ? warp_max[lane] : -FLT_MAX;
+          out = warp_reduce_max(out);
+          if (lane == 0) warp_max[0] = out;
+      }
+      __syncthreads();
+      return warp_max[0];
+  }
+
+  __device__ __forceinline__ float block_reduce_sum(float v) {
+      __shared__ float warp_sum[BLOCK_SIZE / WARP_SIZE];
+      int lane = threadIdx.x & (WARP_SIZE - 1);
+      int warp_id = threadIdx.x / WARP_SIZE;
+
+      v = warp_reduce_sum(v);
+      if (lane == 0) warp_sum[warp_id] = v;
+      __syncthreads();
+
+      float out = 0.0f;
+      if (warp_id == 0) {
+          out = (lane < (BLOCK_SIZE / WARP_SIZE)) ? warp_sum[lane] : 0.0f;
+          out = warp_reduce_sum(out);
+          if (lane == 0) warp_sum[0] = out;
+      }
+      __syncthreads();
+      return warp_sum[0];
+  }
+
+  __global__ void softmax_kernel(const float* input, float* output, int N) {
+      int tid = threadIdx.x;
+
+      float local_max = -FLT_MAX;
+      for (int col = tid; col < N; col += blockDim.x) {
+          local_max = fmaxf(local_max, input[col]);
+      }
+      float row_max = block_reduce_max(local_max);
+
+      float local_sum = 0.0f;
+      for (int col = tid; col < N; col += blockDim.x) {
+          local_sum += __expf(input[col] - row_max);
+      }
+      float row_sum = block_reduce_sum(local_sum);
+
+      float inv_sum = 1.0f / row_sum;
+      for (int col = tid; col < N; col += blockDim.x) {
+          output[col] = __expf(input[col] - row_max) * inv_sum;
+      }
+  }
+
+  extern "C" void solve(const float* input, float* output, int N) {
+      if (N <= 0) return;
+      softmax_kernel<<<1, BLOCK_SIZE>>>(input, output, N);
+      cudaDeviceSynchronize();
+  }
